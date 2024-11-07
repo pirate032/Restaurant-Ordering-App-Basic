@@ -37,17 +37,20 @@ payBtn.addEventListener('click', function(){
     const cardNumber = document.getElementById('cardNumber').value
     const cvv = document.getElementById('cvv').value
    
-   completeOrderBtn.parentElement.classList.remove('gradient')
     if(fullName !== '' && cardNumber !== '' && cvv !== '') {
+         //gradient on main screen will be removed when payment is complete
+        completeOrderBtn.parentElement.classList.remove('gradient')
         //first make the modal and the order section go away
         modal.style.display = "none"
-        orderHeader.style.display = "none"
-        order.style.display = "none"
-        total.style.display = "none"
-        completeOrderBtn.style.display = "none"
+        orderArray = []
+        updateVisibility()
         //then set the thank you message
         message.innerText = `Thanks, ${fullName}!  Your order is on its way!`
         message.style.display = "block"
+        //then clear the form inputs
+        document.getElementById('fullName').value = ''
+        document.getElementById('cardNumber').value = ''
+        document.getElementById('cvv').value = ''
     }
 })
 
@@ -81,6 +84,12 @@ function renderMenuHTML(menuArr) {
 }
 
 function addItemToOrder (menuId) {
+    //if an order was already created and paid for, clear message before starting again
+    if(message != ''){
+        message.textContent = ''
+        message.style.display = "none"
+    }
+    
     //add item clicked to array and get total price for order
     orderArray.push(menuArray[menuId])
     document.getElementById('order').innerHTML = renderOrderHTML(orderArray)
@@ -100,7 +109,6 @@ function renderOrderHTML(orderArr) {
         } = orderItem
         total += price
         totalPrice = total
-        //getTotalCost (price)
         
         return `
             <div class="order-container" id="order-container">
