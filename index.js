@@ -33,25 +33,7 @@ completeOrderBtn.addEventListener('click', function(){
 })
 
 payBtn.addEventListener('click', function(){
-    const fullName = document.getElementById('fullName').value
-    const cardNumber = document.getElementById('cardNumber').value
-    const cvv = document.getElementById('cvv').value
-   
-    if(fullName !== '' && cardNumber !== '' && cvv !== '') {
-         //gradient on main screen will be removed when payment is complete
-        completeOrderBtn.parentElement.classList.remove('gradient')
-        //first make the modal and the order section go away
-        modal.style.display = "none"
-        orderArray = []
-        updateVisibility()
-        //then set the thank you message
-        message.innerText = `Thanks, ${fullName}!  Your order is on its way!`
-        message.style.display = "block"
-        //then clear the form inputs
-        document.getElementById('fullName').value = ''
-        document.getElementById('cardNumber').value = ''
-        document.getElementById('cvv').value = ''
-    }
+    handlePaymentAndClose()
 })
 
 function renderMenuHTML(menuArr) {
@@ -153,6 +135,28 @@ function updateVisibility() {
         order.style.display = "none"
         total.style.display = "none"
         completeOrderBtn.style.display = "none"
+    }
+}
+
+function handlePaymentAndClose() {
+    const fullName = document.getElementById('fullName').value
+    const cardNumber = document.getElementById('cardNumber').value
+    const cvv = document.getElementById('cvv').value
+   
+    if(fullName !== '' && cardNumber !== '' && cvv !== '') {
+         //gradient on main screen will be removed when payment is complete
+        completeOrderBtn.parentElement.classList.remove('gradient')
+        //first make the modal and the order section go away
+        modal.style.display = "none"
+        orderArray = []
+        updateVisibility()
+        //then set the thank you message
+        message.innerText = `Thanks, ${fullName}!  Your order is on its way!`
+        message.style.display = "block"
+        //then clear the form inputs
+        document.getElementById('fullName').value = ''
+        document.getElementById('cardNumber').value = ''
+        document.getElementById('cvv').value = ''
     }
 }
  
