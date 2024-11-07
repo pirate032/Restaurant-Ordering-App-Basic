@@ -7,6 +7,7 @@ const completeOrderBtn = document.getElementById('complete-order-btn')
 const modal = document.getElementById('modal')
 const payBtn = document.getElementById('pay-btn')
 const message = document.getElementById('message')
+const closeModal = document.getElementById('close-modal')
 
 let orderArray = []
 let totalPrice = 0
@@ -34,6 +35,11 @@ completeOrderBtn.addEventListener('click', function(){
 
 payBtn.addEventListener('click', function(){
     handlePaymentAndClose()
+})
+
+closeModal.addEventListener('click', function(){
+    modal.style.display = "none"
+    completeOrderBtn.parentElement.classList.remove('gradient')
 })
 
 function renderMenuHTML(menuArr) {
