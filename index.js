@@ -26,6 +26,9 @@ document.addEventListener ('click', function(e){
         document.getElementById('total').innerHTML = renderTotalHTML()
         updateVisibility()
     }
+    if(e.target.dataset.btnComplete) {
+        console.log(e.target.dataset.btnComplete)
+    }
 })
 
 completeOrderBtn.addEventListener('click', function(){
